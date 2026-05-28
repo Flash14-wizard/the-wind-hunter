@@ -214,6 +214,26 @@
         padding: 25px;
       }
     }
+    <button class="menu-toggle" onclick="toggleChapters()"> ☰ Chapters </button> ckground: rgba(139,92,246,0.15);
+color: #c4b5fd;
+border: 1px solid rgba(255,255,255,0.08);
+padding: 10px 16px;
+border-radius: 12px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.menu-toggle:hover {
+background: rgba(139,92,246,0.3);
+}
+
+.navbar.hidden-links a {
+display: none;
+}
+
+.navbar.hidden-links .menu-toggle {
+display: inline-block;
+      }
   </style>
 </head>
 <body>
@@ -221,6 +241,7 @@
 <div class="stars"></div>
 
 <div class="navbar">
+  <button class="menu-toggle" onclick="toggleChapters()"> ☰ Chapters </button>
   <a href="#chapter1">Chapter 1</a>
   <a href="#chapter2">Chapter 2</a>
   <a href="#chapter3">Chapter 3</a>
@@ -2521,7 +2542,8 @@ function toggleMusic() {
     music.pause();
     playing = false;
   }
-}
+  }
+  function toggleChapters() { const navbar = document.querySelector('.navbar'); navbar.classList.toggle('hidden-links'); }
 </script>
 
 </body>
