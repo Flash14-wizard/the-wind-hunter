@@ -1,247 +1,2239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wind Hunter - Chapters 1 & 2</title>
-    <style>
-        :root {
-            --bg-color: #0c0d12;
-            --surface-color: #141722;
-            --accent-color: #70a1ff;
-            --accent-hover: #1e90ff;
-            --text-primary: #f1f2f6;
-            --text-secondary: #a4b0be;
-            --font-serif: 'Georgia', serif;
-            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wind Hunter: Shadows of Hiyanthiea</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            padding: 0 20px;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-        .container {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 40px 0;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #030303;
+      color: #f5f5f5;
+      overflow-x: hidden;
+      line-height: 1.9;
+      background-image:
+        radial-gradient(circle at top, rgba(139,92,246,0.15), transparent 35%),
+        radial-gradient(circle at bottom, rgba(59,130,246,0.1), transparent 30%);
+    }
 
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            border-bottom: 1px solid #1e272e;
-            padding-bottom: 30px;
-        }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -1;
+      background-image:
+        radial-gradient(white 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.2;
+      animation: moveStars 80s linear infinite;
+    }
 
-        .book-title {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent-color);
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
+    @keyframes moveStars {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-2000px); }
+    }
 
-        .chapter-header {
-            margin-top: 60px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      padding: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
 
-        .chapter-number {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
+    .navbar a {
+      color: #d4d4d8;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
 
-        .chapter-title {
-            font-family: var(--font-serif);
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 1.3;
-        }
+    .navbar a:hover {
+      color: #8b5cf6;
+    }
 
-        .reading-interface {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            line-height: 1.85;
-            color: var(--text-primary);
-        }
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
 
-        .reading-interface p {
-            margin-bottom: 24px;
-        }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      color: #a78bfa;
+      text-shadow: 0 0 25px rgba(139,92,246,0.5);
+      margin-bottom: 20px;
+    }
 
-        .chapter-content p:first-of-type::first-letter {
-            font-size: 3.8rem;
-            float: left;
-            margin-right: 10px;
-            line-height: 0.85;
-            color: var(--accent-color);
-            font-weight: bold;
-            font-family: var(--font-serif);
-        }
+    header p {
+      max-width: 800px;
+      color: #d4d4d8;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+    }
 
-        .signup-section {
-            background-color: var(--surface-color);
-            border: 1px solid #1e272e;
-            border-radius: 12px;
-            padding: 40px 30px;
-            margin-top: 80px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-        .signup-section h2 {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-        }
+    .btn {
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(139,92,246,0.25);
+    }
 
-        .signup-section p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 24px;
-        }
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
 
-        .signup-form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-width: 440px;
-            margin: 0 auto;
-        }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px 100px;
+    }
 
-        .signup-input {
-            background-color: var(--bg-color);
-            border: 1px solid #2f3542;
-            border-radius: 6px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            padding: 14px;
-            width: 100%;
-            outline: none;
-            transition: border-color 0.2s;
-        }
+    .chapter {
+      margin-bottom: 60px;
+      padding: 35px;
+      border-radius: 24px;
+      background: rgba(12,12,12,0.92);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 30px rgba(139,92,246,0.12);
+      animation: fadeInUp 1s ease;
+    }
 
-        .signup-input:focus {
-            border-color: var(--accent-color);
-        }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
 
-        .signup-button {
-            background-color: var(--accent-color);
-            border: none;
-            border-radius: 6px;
-            color: #0c0d12;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 700;
-            padding: 14px;
-            transition: background-color 0.2s, transform 0.1s;
-        }
+    .chapter h2 {
+      font-family: 'Cinzel', serif;
+      color: #c4b5fd;
+      margin-bottom: 25px;
+      font-size: 2rem;
+    }
 
-        .signup-button:hover {
-            background-color: var(--accent-hover);
-        }
+    .chapter p {
+      white-space: pre-line;
+      color: #e5e7eb;
+      font-size: 1.02rem;
+    }
 
-        .signup-button:active {
-            transform: scale(0.98);
-        }
+    .next-btn {
+      margin-top: 25px;
+      display: inline-block;
+      text-decoration: none;
+      background: rgba(139,92,246,0.15);
+      color: #c4b5fd;
+      padding: 12px 18px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
 
-        footer {
-            margin-top: 80px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            border-top: 1px solid #1e272e;
-            padding-top: 30px;
-        }
+    .next-btn:hover {
+      background: rgba(139,92,246,0.3);
+    }
 
-        footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
+    .music-player {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(0,0,0,0.75);
+      padding: 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #d4d4d8;
+      background: #050505;
+    }
 
-        @media (min-width: 520px) {
-            .signup-form {
-                flex-direction: row;
-            }
-            .signup-button {
-                width: auto;
-                white-space: nowrap;
-                padding: 0 28px;
-            }
-        }
-    </style>
+    footer a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    .notify-box {
+      margin-top: 15px;
+      color: #d1d5db;
+      font-size: 0.95rem;
+    }
+
+    @media(max-width:768px){
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .chapter {
+        padding: 25px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <p class="book-title">The Wind Hunter</p>
-        </header>
+<div class="stars"></div>
 
-        <main class="reading-interface">
-            
-            <!-- CHAPTER ONE -->
-            <section class="chapter-content">
-                <div class="chapter-header">
-                    <p class="chapter-number">Chapter One</p>
-                    <h1 class="chapter-title">The Girl Who Chose the Wrong Dragon</h1>
-                </div>
-                
-                <p>The storm arrived before sunrise.</p>
-                <p>Black clouds rolled over the kingdom of Hiyanthiea, swallowing the stars one by one. Thunder shook the palace towers while rain lashed against stained-glass windows. Most of the kingdom still slept, hidden beneath warm blankets and peaceful dreams.</p>
-                <p>But Keila Ravaryn stood wide awake at the edge of the palace roof.</p>
-                <p>Wind tore through her dark braid as she stared toward the distant mountains known as the Teeth of Veyr. Somewhere beyond those jagged peaks, wild dragons roamed free—far from royal chains and cruel commands.</p>
-                <p>Circe landed beside her with a heavy thud, folding midnight-blue wings against the rain. Water shimmered across the dragon’s silver scales like liquid moonlight.</p>
-                <p>“You’re thinking too loudly again,” Circe said through their bond.</p>
-                <p>Keila smirked faintly. “And you’re eavesdropping again.”</p>
-                <p>“I prefer <em>protecting</em>.”</p>
-                <p>The dragon’s glowing eyes narrowed toward the palace courtyard below. Soldiers carrying crimson banners marched through the gates while servants rushed to prepare for the Festival of Bonding.</p>
-                <p>Keila’s stomach twisted.</p>
-                <p>Today marked exactly one year since she had been banished from the kingdom. One year since her parents declared her unworthy of the throne. One year since she chose Circe instead of the massive golden war dragon selected for her by the royal council.</p>
-                <p>The memory still burned.</p>
-                <p>“You embarrassed our family,” her father had shouted before the entire court. “A future queen does not choose weakness.”</p>
-                <p>Weakness.</p>
-                <p>Keila glanced at Circe and almost laughed at the absurdity of the word. Circe was smaller than most battle dragons, yes—but her speed could outrun storms, and her intelligence rivaled ancient scholars. She could read forgotten languages carved into ruined temples. She understood battle strategy better than generals.</p>
-                <p>And unlike the royal dragons, Circe chose her rider freely.</p>
-                <p>That frightened the kingdom more than anything.</p>
-                <p>A bell rang through the palace grounds below. Once. Twice. Three times.</p>
-                <p>“The ceremony begins,” Circe murmured.</p>
-                <p>Keila reached into her pocket and felt the tiny scroll hidden inside her cloak. Even through the fabric, the parchment felt warm. Dangerous. Alive.</p>
-                <p>Inside the scroll was evidence capable of destroying the royal council forever. Names. Secret alliances. Records of forbidden magic.</p>
-                <p>Proof that Lady Morvane controlled the throne from the shadows.</p>
-                <p>Keila had stolen it three nights ago from the hidden archives beneath the palace library. Since then, assassins had hunted her across forests, mountains, and abandoned ruins. Two villages had burned because people helped her escape.</p>
-                <p>Thousands were already suffering because of the kingdom’s lies.</p>
-                <p>And now she had returned.</p>
-                <p>Lightning split the sky.</p>
-                <p>Far below, nobles in jeweled masks gathered in the courtyard while musicians played soft melodies. The entire kingdom believed tonight celebrated unity between dragon riders and their beasts.</p>
-                <p>But Keila knew the truth.</p>
-                <p>The ceremony was a trap.</p>
-                <p>Another bell echoed through the rain. Then screaming followed.</p>
-                <p>Keila rushed to the roof’s edge.</p>
-                <p>At first she thought lightning had struck the courtyard. Guards scattered in panic while guests fled across marble steps. Then she saw them.</p>
-                <p>Shadow creatures.</p>
-                <p>Tall, twisted beings crawled from pools of darkness beneath the palace walls. Their bodies flickered like smoke, with glowing white eyes and claws shaped from pure shadow magic.</p>
-                <p>“The Veilborn,” Circe hissed.</p>
-                <p>Keila’s blood ran cold.</p>
-                <p>The Veilborn belonged to Lady Morvane alone. She only unleashed them when she wanted fear.</p>
-                <p>Or war.</p>
+<div class="navbar">
+  <a href="#chapter1">Chapter 1</a>
+  <a href="#chapter2">Chapter 2</a>
+  <a href="#chapter3">Chapter 3</a>
+  <a href="#chapter4">Chapter 4</a>
+  <a href="#chapter5">Chapter 5</a>
+  <a href="#chapter6">Chapter 6</a>
+  <a href="#chapter7">Chapter 7</a>
+  <a href="#chapter8">Chapter 8</a>
+</div>
+
+<header style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat; border-bottom: 1px solid rgba(255,255,255,0.08);">
+
+<div style="max-width:1100px;margin:auto;padding:20px;">
+  <img src="https://images.unsplash.com/photo-1577495508326-19a1b3cf65b7?q=80&w=1200&auto=format&fit=crop" alt="Wind Hunter Cover" style="width:100%;max-height:500px;object-fit:cover;border-radius:28px;box-shadow:0 0 40px rgba(139,92,246,0.35);margin-bottom:35px;border:1px solid rgba(255,255,255,0.08);">
+</div>
+
+<header>
+  <h1>Wind Hunter<br>Shadows of Hiyanthiea</h1>
+
+  <p>
+    Enter a world of dragons, forbidden magic, lost kingdoms, ancient beasts,
+    romance, betrayal, and a darkness older than history itself.
+  </p>
+
+  <div class="buttons">
+    <button class="btn" onclick="enableNotifications()">🔔 Enable Chapter Notifications</button>
+    <button class="btn" onclick="toggleMusic()">🎵 Play Fantasy Music</button>
+  </div>
+
+  <div class="notify-box" id="notifyText">
+    Readers will be notified when new chapters are released.
+  </div>
+</header>
+
+<div class="container">
+
+<section class="chapter" id="chapter1">
+<h2>Chapter One — The Girl Who Chose the Wrong Dragon</h2>
+<p>
+
+The storm arrived before sunrise.
+
+Black clouds rolled over the kingdom of Hiyanthiea, swallowing the stars one by one. Thunder shook the palace towers while rain lashed against stained-glass windows. Most of the kingdom still slept, hidden beneath warm blankets and peaceful dreams.
+
+But Keila Ravaryn stood wide awake at the edge of the palace roof.
+
+Wind tore through her dark braid as she stared toward the distant mountains known as the Teeth of Veyr. Somewhere beyond those jagged peaks, wild dragons roamed free—far from royal chains and cruel commands.
+
+Circe landed beside her with a heavy thud, folding midnight-blue wings against the rain. Water shimmered across the dragon’s silver scales like liquid moonlight.
+
+“You’re thinking too loudly again,” Circe said through their bond.
+
+Keila smirked faintly. “And you’re eavesdropping again.”
+
+“I prefer *protecting*.”
+
+The dragon’s glowing eyes narrowed toward the palace courtyard below. Soldiers carrying crimson banners marched through the gates while servants rushed to prepare for the Festival of Bonding.
+
+Keila’s stomach twisted.
+
+Today marked exactly one year since she had been banished from the kingdom. One year since her parents declared her unworthy of the throne. One year since she chose Circe instead of the massive golden war dragon selected for her by the royal council.
+
+The memory still burned.
+
+“You embarrassed our family,” her father had shouted before the entire court. “A future queen does not choose weakness.”
+
+Weakness.
+
+Keila glanced at Circe and almost laughed at the absurdity of the word. Circe was smaller than most battle dragons, yes—but her speed could outrun storms, and her intelligence rivaled ancient scholars. She could read forgotten languages carved into ruined temples. She understood battle strategy better than generals.
+
+And unlike the royal dragons, Circe chose her rider freely.
+
+That frightened the kingdom more than anything.
+
+A bell rang through the palace grounds below. Once. Twice. Three times.
+
+“The ceremony begins,” Circe murmured.
+
+Keila reached into her pocket and felt the tiny scroll hidden inside her cloak. Even through the fabric, the parchment felt warm. Dangerous. Alive.
+
+Inside the scroll was evidence capable of destroying the royal council forever. Names. Secret alliances. Records of forbidden magic.
+
+Proof that Lady Morvane controlled the throne from the shadows.
+
+Keila had stolen it three nights ago from the hidden archives beneath the palace library. Since then, assassins had hunted her across forests, mountains, and abandoned ruins. Two villages had burned because people helped her escape.
+
+Thousands were already suffering because of the kingdom’s lies.
+
+And now she had returned.
+
+Lightning split the sky.
+
+Far below, nobles in jeweled masks gathered in the courtyard while musicians played soft melodies. The entire kingdom believed tonight celebrated unity between dragon riders and their beasts.
+
+But Keila knew the truth.
+
+The ceremony was a trap.
+
+Another bell echoed through the rain. Then screaming followed.
+
+Keila rushed to the roof’s edge.
+
+At first she thought lightning had struck the courtyard. Guards scattered in panic while guests fled across marble steps. Then she saw them.
+
+Shadow creatures.
+
+Tall, twisted beings crawled from pools of darkness beneath the palace walls. Their bodies flickered like smoke, with glowing white eyes and claws shaped from pure shadow magic.
+
+“The Veilborn,” Circe hissed.
+
+Keila’s blood ran cold.
+
+The Veilborn belonged to Lady Morvane alone. She only unleashed them when she wanted fear.
+
+Or war.
+
+One of the creatures lunged at a servant girl. Keila reacted instantly, drawing an arrow from the quiver across her back. She fired.
+
+The arrow pierced the creature’s chest, exploding in silver flame. The Veilborn shrieked before dissolving into ash.
+
+Below, terrified nobles looked upward.
+
+They saw her.
+
+Whispers spread through the crowd immediately.
+
+“The exile…”
+“The rogue dragon rider…”
+“She returned…”
+
+Then the palace doors burst open.
+
+Prince Vaelen strode into the storm.
+
+Even through the chaos, the crowd fell silent.
+
+Vaelen wore black armor trimmed with silver dragon scales. Rain slid down the scar crossing his face, making it appear almost like molten glass beneath flashes of lightning. Some nobles still feared the scar, believing it cursed him after his battle with Morvane years ago. Others whispered it made him look dangerous.
+
+Keila simply remembered touching it once before everything fell apart.
+
+Their eyes met across the courtyard.
+
+For a moment, the storm itself seemed to disappear.
+
+Vaelen looked exactly as she remembered—and completely different. Harder. Tired. Like someone carrying the weight of an entire kingdom alone.
+
+“Keila,” he breathed.
+
+A Veilborn leapt toward him from the shadows.
+
+Vaelen unsheathed his sword instantly, blue fire racing along the blade. In one swift strike, he cut the creature apart. The crowd erupted into terrified screams again.
+
+More shadows climbed from the ground. Ten. Twenty. Maybe more.
+
+“This is impossible,” Keila whispered. “The Veilborn can’t exist this far from the Dark Rift.”
+
+Circe’s wings twitched uneasily.
+
+“They can if someone opened the gate.”
+
+Keila’s heart stopped.
+
+Only one person alive knew how to open the Dark Rift completely.
+
+Lady Morvane.
+
+As if summoned by the thought, the palace tower windows exploded outward. Black smoke spiraled into the storm clouds while dark magic spread across the sky like enormous wings.
+
+And then she appeared.
+
+Lady Morvane floated above the courtyard in a whirl of shadow and silver fire. Her white hair danced wildly around the scarred half of her face, while her glowing violet eye locked directly onto Keila.
+
+“You should have stayed gone,” Morvane said softly.
+
+Her voice somehow carried across the entire palace grounds.
+
+The crowd dropped to their knees immediately. Guards lowered their weapons in fear. Even dragons chained near the royal stables growled nervously.
+
+Only Keila remained standing.
+
+“You poisoned this kingdom,” Keila shouted back. “I know what you’ve done.”
+
+Morvane smiled slowly.
+
+“Oh, child,” she whispered. “You know almost nothing.”
+
+The sorceress lifted one pale hand.
+
+Suddenly the scroll inside Keila’s pocket burned with unbearable heat. Ancient symbols glowed through the fabric of her cloak.
+
+Morvane’s smile widened.
+
+“The scroll belongs to me.”
+
+Circe roared, spreading her massive wings across the rooftop. Lightning crackled around her claws.
+
+Below, Prince Vaelen looked between Keila and Morvane with growing horror.
+
+Because for the first time, he realized this was never just about rebellion.
+
+It was about something far worse.
+
+War had finally come to Hiyanthiea.
+
+</p>
+<a class="next-btn" href="#chapter2">Next Chapter →</a>
+</section>
+
+<section class="chapter" id="chapter2">
+<h2>Chapter Two — The Storm Between Them</h2>
+<p>
+
+The palace exploded into chaos.
+
+Screams echoed through the rain-soaked courtyard as the Veilborn surged forward like living nightmares. Guards swung swords wildly, but steel passed through the shadow creatures as though they were smoke.
+
+“MOVE!” Vaelen shouted.
+
+Blue fire burst from his blade, forcing several Veilborn backward. The flames reflected against the rain in flashes of silver and sapphire.
+
+Keila leapt from the rooftop without hesitation.
+
+Circe dove beneath her instantly, catching her rider midair before soaring over the panicked crowd. Wind whipped through Keila’s hair as arrows streaked past them from palace archers.
+
+“They’re shooting at us?” Keila yelled.
+
+“They’re terrified,” Circe answered. “Terrified people make stupid choices.”
+
+Below, Lady Morvane hovered above the courtyard like a dark queen born from the storm itself. Shadows twisted around her arms while frightened nobles knelt before her.
+
+“Bring me the girl,” Morvane commanded calmly.
+
+The Veilborn obeyed instantly.
+
+Dozens launched upward.
+
+Circe banked sharply left as clawed shadows snapped inches from Keila’s face. She fired arrow after arrow, each one glowing silver before bursting into flame against the creatures.
+
+But more kept coming.
+
+“They’re multiplying!” Keila shouted.
+
+“They’re feeding on fear.”
+
+A terrible realization hit her. The more panic spreading through the kingdom, the stronger the Veilborn became.
+
+Lightning cracked across the sky.
+
+Then Vaelen appeared beside them atop his dragon, Aetherion.
+
+Unlike Circe, Aetherion was enormous—a silver-scaled war dragon with wings wider than palace towers. Blue flames curled from his jaws as he slammed into a group of Veilborn, scattering shadows across the clouds.
+
+Vaelen reached toward Keila as their dragons flew side by side.
+
+“You came back,” he said breathlessly.
+
+Keila almost laughed despite the chaos. “That’s your first question?”
+
+“I had others planned.”
+
+Even now, he still sounded like the boy she remembered.
+
+For one dangerous second, the world softened around them. No kingdom. No war. No shadows. Just two people who never truly stopped caring about each other.
+
+Then Morvane screamed.
+
+The sound ripped across the sky unnaturally, shaking windows and stone towers alike. Dark magic spiraled upward from her hands and struck Aetherion directly.
+
+The great dragon roared in agony.
+
+“Vaelen!” Keila cried.
+
+Black chains of shadow wrapped around Aetherion’s wings, dragging him downward toward the palace grounds. Vaelen fought to keep control, but the dragon spiraled violently through the storm.
+
+Morvane smiled cruelly.
+
+“You still choose her over me,” she whispered.
+
+The words made Keila freeze.
+
+Over *me*.
+
+Circe felt the shock through their bond immediately. “Keila…”
+
+Morvane loved Vaelen.
+
+Not as an ally. Not as a prince. Something deeper. Something obsessive.
+
+And jealousy had poisoned her into becoming this monster.
+
+Vaelen managed to steady Aetherion just before crashing into the palace gates. Soldiers rushed backward in panic as the dragon slammed onto the stone bridge outside the courtyard.
+
+Keila guided Circe downward instantly.
+
+Rain hammered the bridge while Veilborn gathered in the darkness around them.
+
+Vaelen staggered from Aetherion’s saddle, clutching his shoulder where shadow magic spread like black veins beneath his skin.
+
+“You’re hurt,” Keila said.
+
+“I’ve had worse.”
+
+“That is clearly not true.”
+
+Despite everything, Vaelen smiled weakly. “There’s the Keila I remember.”
+
+A deafening roar interrupted them.
+
+The Veilborn were closing in. Hundreds now. Their glowing white eyes surrounded the bridge like stars in endless darkness.
+
+Circe lowered herself protectively beside Keila. Aetherion growled through clenched teeth, still weakened by Morvane’s curse.
+
+“We can’t fight this many,” Vaelen admitted quietly.
+
+Keila’s hand tightened around the hidden scroll.
+
+“Yes, we can.”
+
+She pulled the parchment free for the first time. Ancient silver markings glowed across its surface, lighting the storm around them. The symbols shifted constantly, almost alive.
+
+Vaelen stared at it in horror.
+
+“That’s impossible.”
+
+“You recognize it?”
+
+“It’s not a scroll,” he whispered. “It’s a seal.”
+
+Thunder shook the mountains beyond the kingdom.
+
+Far in the distance, something enormous roared.
+
+Not a dragon.
+
+Something older.
+
+Even the Veilborn hesitated.
+
+The silver symbols on the parchment blazed brighter until the words finally became clear:
+
+**THE LAST GATE MUST NEVER OPEN.**
+
+The air suddenly turned ice cold.
+
+And from the darkness beneath the bridge, glowing golden eyes slowly opened.
+
+</p>
+<a class="next-btn" href="#chapter3">Next Chapter →</a>
+</section>
+
+<section class="chapter" id="chapter3">
+<h2>Chapter Three — The Beast Beneath the Bridge</h2>
+<p>
+
+The golden eyes blinked once.
+
+Then the entire bridge trembled.
+
+Cracks raced across the stone beneath Keila's boots as something massive stirred in the darkness below. The Veilborn stepped backward, hissing nervously.
+
+Keila had never seen them afraid before.
+
+"Circe," she whispered, "what is that?"
+
+The dragon's silver eyes widened.
+
+"I don't know."
+
+For the first time since Keila had met her, Circe sounded frightened.
+
+A deep growl rolled through the canyon beneath the bridge. It wasn't loud. It didn't need to be. The sound seemed to vibrate through the air itself.
+
+The glowing symbols on the parchment flared brighter.
+
+**THE LAST GATE MUST NEVER OPEN.**
+
+Vaelen stared at the message.
+
+"My grandfather told me stories about this," he said.
+
+Keila looked at him.
+
+"You've seen this before?"
+
+"No. But I've heard the legends."
+
+Another rumble shook the bridge.
+
+"The First Beasts."
+
+Lightning flashed overhead.
+
+Vaelen continued, "Before dragons bonded with humans, there were older creatures. Beings born from the world's first magic."
+
+"The First Beasts aren't real," Keila said.
+
+"Neither are shadow monsters," Vaelen replied.
+
+"Fair point."
+
+Suddenly a gigantic claw emerged from beneath the bridge.
+
+Not scales.
+
+Not fur.
+
+The creature's skin shimmered like polished crystal filled with flowing golden light.
+
+The claw alone was larger than a wagon.
+
+The Veilborn scattered.
+
+Then the beast rose.
+
+Everyone froze.
+
+Its body resembled a lion, a dragon, and an eagle all at once. Golden wings stretched wider than the bridge. Crystal horns curved backward from its head like a crown. Light flowed beneath its skin as though stars lived inside it.
+
+Even Morvane looked shocked.
+
+"No..." she whispered.
+
+The creature fixed its glowing eyes on the sorceress.
+
+"You."
+
+Its voice echoed like distant thunder.
+
+Morvane immediately raised a shield of shadow around herself.
+
+The beast took one step forward.
+
+The shield shattered.
+
+One step.
+
+That's all it took.
+
+The Veilborn began fleeing in every direction.
+
+Keila felt the creature studying her.
+
+Not threatening.
+
+Examining.
+
+Judging.
+
+Then its gaze moved to the glowing parchment in her hands.
+
+"The Seal of Auralis," it said.
+
+"You know this?" Keila asked.
+
+"I guarded it long before your kingdom existed."
+
+Vaelen exchanged a look with Keila.
+
+Neither of them understood what was happening anymore.
+
+The beast lowered its enormous head.
+
+"My name is Solaryn."
+
+The name seemed to make the storm itself pause.
+
+"I am the last Guardian of the Gates."
+
+Circe inhaled sharply.
+
+"I know that name."
+
+"You do?" Keila asked.
+
+"Dragon hatchlings are told stories about Solaryn. We thought he was a myth."
+
+Solaryn's golden eyes softened.
+
+"Most myths begin as truths."
+
+A scream cut through the air.
+
+Morvane.
+
+Dark magic exploded from her hands, forming a tornado of shadow above the bridge.
+
+"I don't care who you are!" she shouted.
+
+Black lightning shot toward Solaryn.
+
+The blast struck his chest.
+
+Nothing happened.
+
+The ancient beast didn't even flinch.
+
+Morvane's confidence vanished.
+
+For the first time, fear appeared in her glowing violet eye.
+
+"You cannot stop destiny," she snarled.
+
+"Destiny?" Solaryn asked calmly.
+
+"The Last Gate will open."
+
+The ancient guardian's expression darkened.
+
+"No."
+
+Shadow magic erupted around Morvane as she began chanting in an ancient language.
+
+The sky turned black.
+
+The ground cracked.
+
+Far beyond the mountains, a terrible roar echoed through the world.
+
+A roar so enormous that every dragon present lowered their heads instinctively.
+
+Even Solaryn looked toward the horizon.
+
+And that frightened Keila more than anything.
+
+"What was that?" she whispered.
+
+The guardian's voice became grave.
+
+"The thing imprisoned behind the Last Gate."
+
+Silence fell.
+
+The storm stopped.
+
+The wind died.
+
+For a moment, the entire world seemed to hold its breath.
+
+Then the seal in Keila's hand split down the middle.
+
+A thin line of golden light emerged.
+
+Solaryn's eyes widened.
+
+"No..."
+
+The crack spread.
+
+Ancient energy poured into the sky.
+
+Far away, something answered.
+
+And deep beneath the mountains of Hiyanthiea, a second pair of glowing eyes opened in the darkness.
+
+Much larger than Solaryn's.
+
+Much older.
+
+Much angrier.
+
+**To Be Continued...** 🐉✨📖
+
+</p>
+<a class="next-btn" href="#chapter4">Next Chapter →</a>
+</section>
+
+<section class="chapter" id="chapter4">
+<h2>Chapter Four — The Cracking Gate</h2>
+<p>
+
+The crack in the seal spread like lightning across glass.
+
+Keila nearly dropped the parchment as golden energy erupted from it, spiraling high into the clouds.
+
+The mountains answered.
+
+A deep rumble rolled across the kingdom.
+
+Then another.
+
+And another.
+
+The ground beneath the bridge shook so violently that chunks of stone tumbled into the canyon below.
+
+"What's happening?" Keila shouted.
+
+Solaryn's massive wings unfolded.
+
+"The prison is weakening."
+
+His voice sounded heavier than before.
+
+"The Last Gate has remained sealed for thousands of years. If it breaks completely, the Devourer will return."
+
+"The Devourer?" Vaelen asked.
+
+Solaryn looked toward the distant mountains.
+
+"The creature that nearly ended the First Age."
+
+Even Morvane stopped casting for a moment.
+
+Keila noticed it immediately.
+
+The sorceress looked frightened.
+
+Not of Solaryn.
+
+Of the name.
+
+The Devourer.
+
+Whatever it was, even Morvane feared it.
+
+Then Morvane's fear vanished, replaced by determination.
+
+"Good," she whispered.
+
+Keila stared.
+
+"Good?"
+
+Morvane laughed.
+
+The sound echoed across the bridge like shattered glass.
+
+"You still don't understand."
+
+Dark energy swirled around her.
+
+"The kingdoms are broken. The rulers are corrupt. The dragons are chained. The world needs to be remade."
+
+"By unleashing a monster?" Vaelen asked.
+
+"By destroying what deserves to fall."
+
+For a brief moment, Keila almost felt sorry for her.
+
+Morvane truly believed she was saving the world.
+
+That made her even more dangerous.
+
+Suddenly, the crack in the seal widened again.
+
+A pulse of energy exploded outward.
+
+BOOM!
+
+Everyone was thrown backward.
+
+Keila hit the bridge hard.
+
+The scroll flew from her hands.
+
+"No!"
+
+She scrambled toward it.
+
+So did Morvane.
+
+The sorceress landed first.
+
+Her scarred face twisted into a victorious smile as she snatched the seal from the ground.
+
+"At last."
+
+Dark magic poured into the parchment.
+
+The golden symbols flickered.
+
+Then changed.
+
+New words appeared.
+
+Words written in a language older than kingdoms.
+
+Solaryn roared.
+
+"Destroy it!"
+
+Morvane ignored him.
+
+She read the ancient words aloud.
+
+The moment she finished, the mountains split with a thunderous crack.
+
+Far away, a pillar of black light erupted into the sky.
+
+The clouds twisted around it like a giant whirlpool.
+
+Every dragon in Hiyanthiea cried out at once.
+
+Circe stumbled.
+
+Aetherion lowered his head.
+
+Even Solaryn looked shaken.
+
+Keila felt cold fear settle in her chest.
+
+The Last Gate had begun to open.
+
+Then something impossible happened.
+
+The seal burst into flames.
+
+Morvane screamed.
+
+The parchment burned in her hands with brilliant silver fire.
+
+"What?" she gasped.
+
+The fire spread across the ancient symbols.
+
+They weren't being destroyed.
+
+They were revealing something hidden.
+
+A map.
+
+Keila's eyes widened.
+
+Lines of glowing silver appeared in the air.
+
+Mountains.
+
+Forests.
+
+Oceans.
+
+And one distant island far beyond any kingdom she had ever seen.
+
+At the center of the map was a single symbol.
+
+A dragon.
+
+"No..." Solaryn whispered.
+
+"You know that place?" Keila asked.
+
+The guardian nodded slowly.
+
+"The Isle of Stars."
+
+Vaelen frowned.
+
+"I've never heard of it."
+
+"Almost nobody has."
+
+Solaryn's voice dropped lower.
+
+"It vanished centuries ago."
+
+The map brightened.
+
+New words appeared beneath the symbol.
+
+**THE HEIR OF THE FIRST FLAME AWAITS.**
+
+Silence fell.
+
+Keila looked at Vaelen.
+
+Vaelen looked at Keila.
+
+Then both of them looked at Circe.
+
+The dragon's silver eyes were wide.
+
+"I don't think that's talking about me."
+
+A massive shadow passed over the clouds.
+
+Everyone froze.
+
+Slowly.
+
+Very slowly.
+
+They looked up.
+
+Far above the storm floated an enormous shape.
+
+Not a dragon.
+
+Not a beast.
+
+A single eye opened within the darkness.
+
+Its pupil glowed red.
+
+The eye was larger than the palace itself.
+
+It stared down at the kingdom.
+
+Watching.
+
+Waiting.
+
+Hungry.
+
+Solaryn's face hardened.
+
+"The Devourer knows we're here."
+
+For the first time since this began, the ancient guardian sounded afraid.
+
+"The race for the Isle of Stars has begun."
+
+And somewhere beyond the shattered mountains, hidden beneath oceans and forgotten legends, the Heir of the First Flame was waiting. 🐉✨📖
+
+
+</p>
+<a class="next-btn" href="#chapter5">Next Chapter →</a>
+</section>
+
+<section class="chapter" id="chapter5">
+<h2>Chapter Five — The Isle of Stars</h2>
+<p>
+
+The giant red eye vanished.
+
+One moment it hung above the clouds.
+
+The next, it was gone.
+
+Yet the feeling remained.
+
+Watching.
+
+Waiting.
+
+Hunting.
+
+No one spoke for several seconds.
+
+Rain continued to fall across the shattered bridge as the black pillar of light burned in the distant mountains.
+
+Finally, Keila broke the silence.
+
+"We need to get to the Isle of Stars."
+
+Morvane laughed.
+
+"You think it's that simple?"
+
+She wiped blood from the corner of her mouth and stepped backward into a swirl of shadows.
+
+"The island disappeared centuries ago. Entire fleets searched for it and never returned."
+
+"Then how do we find it?" Vaelen asked.
+
+Solaryn's golden eyes focused on the glowing map still floating in the air.
+
+"The map only appears when the Gate begins to open."
+
+"Meaning?"
+
+"It wants to be found."
+
+That answer somehow raised even more questions.
+
+Before Keila could ask another one, a sharp cry echoed from above.
+
+Circe snapped her head toward the eastern sky.
+
+"Dragons."
+
+Dozens of shapes emerged from the storm clouds.
+
+At first Keila feared they were more enemies.
+
+Then she recognized the banners hanging from their saddles.
+
+The Royal Dragon Guard.
+
+"They found us," Vaelen muttered.
+
+Leading the formation was a woman with bronze armor and fiery red hair.
+
+The moment she landed, she jumped from her dragon and drew her sword.
+
+"Prince Vaelen."
+
+Her voice was stern.
+
+"You are ordered to return to the capital immediately."
+
+Vaelen crossed his arms.
+
+"And if I refuse?"
+
+"Then I am ordered to bring you back by force."
+
+The soldiers behind her looked uncomfortable.
+
+Nobody seemed eager to fight a prince, two dragons, and a legendary guardian beast.
+
+The woman noticed Keila.
+
+Her eyes narrowed.
+
+"The exile is with you."
+
+"Good observation," Keila replied.
+
+Vaelen almost smiled.
+
+The woman was not amused.
+
+"My name is Captain Lyra."
+
+Keila immediately recognized it.
+
+Captain Lyra Stormwing.
+
+Commander of the Royal Dragon Guard.
+
+One of the kingdom's most respected warriors.
+
+"Listen carefully," Lyra said. "Three cities reported Veilborn attacks this morning. Another disappeared entirely."
+
+Keila's heart sank.
+
+"Disappeared?"
+
+Lyra nodded grimly.
+
+"Nothing remains except shadows."
+
+Even Solaryn looked troubled.
+
+The Gate was opening faster than anyone expected.
+
+A distant roar echoed from the mountains.
+
+Louder this time.
+
+Closer.
+
+The ground trembled beneath their feet.
+
+Several dragons hissed nervously.
+
+Then the glowing map changed.
+
+The image of the Isle of Stars expanded until everyone could see it clearly.
+
+Mountains surrounded the island.
+
+Silver forests covered much of its surface.
+
+And at its center stood a tower reaching into the heavens.
+
+A single star burned above it.
+
+Bright enough to outshine the sun.
+
+Words appeared beneath the image.
+
+**FIND THE FIRST FLAME BEFORE THE THIRD MOON RISES.**
+
+Then the map vanished.
+
+Just like that.
+
+Gone.
+
+"The Third Moon?" Vaelen asked.
+
+Solaryn lowered his head.
+
+"We have less than three weeks."
+
+Captain Lyra stared at the place where the map had disappeared.
+
+"What exactly is happening?"
+
+No one answered immediately.
+
+Because the truth sounded impossible.
+
+At last, Keila spoke.
+
+"The world might be ending."
+
+Lyra blinked.
+
+"That's unfortunate."
+
+Keila laughed despite herself.
+
+"So that's your reaction?"
+
+"I've had worse weeks."
+
+For the first time all day, a few people smiled.
+
+The moment didn't last.
+
+A black feather drifted from the sky.
+
+Then another.
+
+And another.
+
+Hundreds of them.
+
+The feathers landed across the bridge.
+
+Across the dragons.
+
+Across the shattered stones.
+
+Silence fell.
+
+Morvane looked up.
+
+For the first time since meeting her, genuine fear crossed her face.
+
+"No..."
+
+A shadow moved within the clouds.
+
+Massive.
+
+Far larger than any dragon.
+
+The creature did not reveal itself.
+
+Only its wings.
+
+Endless black wings stretching across the storm.
+
+The sunlight disappeared.
+
+Darkness swallowed the kingdom.
+
+And from somewhere above came a voice so deep that it shook the mountains.
+
+"I am free."
+
+The black pillar in the mountains pulsed once more.
+
+And far beyond the oceans, hidden behind storms no ship had ever crossed, a lonely tower upon the Isle of Stars began to glow. 🐉✨📖
+
+</p>
+<a class="next-btn" href="#chapter6">Next Chapter →</a>
+</section>
+
+<section class="chapter" id="chapter6">
+<h2>Chapter Six — The First Sign</h2>
+<p>
+
+No one moved.
+
+No one breathed.
+
+The voice echoed across the kingdom long after the words had been spoken.
+
+**"I am free."**
+
+The endless black wings remained hidden within the storm clouds above.
+
+Even Solaryn seemed frozen.
+
+Keila had never seen the ancient guardian afraid before.
+
+Now she understood why.
+
+"What is it?" she whispered.
+
+Solaryn slowly lifted his gaze.
+
+"The Herald."
+
+"The Herald?" Vaelen asked.
+
+The guardian nodded.
+
+"It serves the Devourer."
+
+A chill ran through Keila.
+
+"Serves it?"
+
+"The Devourer cannot fully enter our world while the Last Gate remains partially sealed. So it sends servants ahead."
+
+Lightning flashed through the clouds.
+
+For a brief second, Keila caught sight of something enormous moving overhead.
+
+A single claw.
+
+Longer than a ship.
+
+Then it vanished again.
+
+Captain Lyra gripped her sword tighter.
+
+"We need to leave."
+
+"For once," Circe said, "I completely agree."
+
+Another feather drifted down.
+
+This one landed in front of Keila.
+
+The moment it touched the stone, darkness spread from it like spilled ink.
+
+The bridge began to crack.
+
+"Move!" Vaelen shouted.
+
+Everyone jumped back as part of the bridge collapsed into the canyon below.
+
+More feathers fell.
+
+Every feather carried the same corruption.
+
+Stone darkened.
+
+Metal rusted.
+
+Plants withered.
+
+Even the rain seemed to turn black wherever it landed.
+
+"The Herald is poisoning the land," Solaryn growled.
+
+Above them, the clouds churned.
+
+A pair of glowing crimson eyes appeared briefly within the darkness.
+
+Watching.
+
+Studying.
+
+Waiting.
+
+Then the creature disappeared once more.
+
+It wasn't attacking.
+
+Not yet.
+
+As if it already knew it would win.
+
+Keila hated that feeling.
+
+"We're wasting time," she said.
+
+"The Isle of Stars."
+
+Vaelen nodded.
+
+"The map said we have less than three weeks."
+
+Captain Lyra looked between them.
+
+"You actually intend to chase a mythical island?"
+
+"We intend to stop the end of the world," Keila replied.
+
+Lyra considered that.
+
+"Fair enough."
+
+Circe lowered her head.
+
+"There is another problem."
+
+Everyone looked at her.
+
+"The Isle of Stars lies beyond the Endless Sea."
+
+"The sea doesn't scare me," Vaelen said.
+
+"It should."
+
+Even Solaryn turned toward Circe.
+
+The dragon's silver eyes narrowed.
+
+"Every dragon knows the stories."
+
+Keila frowned.
+
+"What stories?"
+
+"The Sea Wyrms."
+
+Silence followed.
+
+Captain Lyra's expression changed immediately.
+
+"Those are legends."
+
+Circe shook her head.
+
+"No."
+
+The way she said it made Keila nervous.
+
+"Sea Wyrms are older than dragons. Most sleep beneath the ocean."
+
+"Most?" Vaelen asked.
+
+Circe didn't answer.
+
+She didn't need to.
+
+The answer was obvious.
+
+Not all of them slept.
+
+A distant explosion interrupted the conversation.
+
+Everyone turned toward the capital.
+
+A column of black smoke rose above the palace.
+
+Then another.
+
+And another.
+
+"The city!" Lyra shouted.
+
+More screams echoed from the distance.
+
+The Veilborn were spreading.
+
+Keila clenched her fists.
+
+There were too many disasters.
+
+The Herald.
+
+The Devourer.
+
+The Isle of Stars.
+
+The attacks across the kingdom.
+
+How were they supposed to stop all of it?
+
+Then something warm touched her hand.
+
+She looked down.
+
+Vaelen.
+
+He hadn't said anything.
+
+He simply stood beside her.
+
+For the first time since her exile, she didn't feel alone.
+
+"We'll figure it out," he said quietly.
+
+Keila almost smiled.
+
+"That isn't a plan."
+
+"No."
+
+His eyes met hers.
+
+"But it's a start."
+
+Suddenly, the air shimmered.
+
+Golden light appeared beside Solaryn.
+
+A floating symbol formed in the sky.
+
+A star.
+
+The same star from the map.
+
+The symbol pulsed once.
+
+Then transformed into a single sentence.
+
+**THE HEIR OF THE FIRST FLAME HAS AWAKENED.**
+
+The message vanished instantly.
+
+But not before everyone saw it.
+
+Far away, upon the hidden Isle of Stars, a silver-haired girl stepped onto a balcony overlooking the sea and watched six dragons circle the horizon as if they had been waiting for her all along. 🐉✨📖
+
+</p>
+<a class="next-btn" href="#chapter7">Next Chapter →</a>
+</section>
+
+<section class="chapter" id="chapter7">
+<h2>Chapter Seven — Echoes of the Past</h2>
+<p>
+
+The message vanished.
+
+**THE HEIR OF THE FIRST FLAME HAS AWAKENED.**
+
+For several moments, nobody spoke.
+
+The wind whistled through the broken stones of the bridge while the distant sounds of chaos echoed from the capital.
+
+Captain Lyra was the first to recover.
+
+"So we're looking for a mysterious heir on a hidden island before an ancient monster destroys the world."
+
+Vaelen nodded.
+
+"When you say it like that, it sounds difficult."
+
+Lyra stared at him.
+
+"It was supposed to."
+
+Circe snorted.
+
+Keila almost laughed.
+
+Almost.
+
+Because her mind was elsewhere.
+
+On the words she'd just seen.
+
+The Heir of the First Flame.
+
+A silver-haired girl she'd never met.
+
+A hidden island she'd never seen.
+
+A destiny she didn't understand.
+
+And somehow, all of it was connected to her.
+
+"Keila?"
+
+She looked up.
+
+Vaelen was watching her.
+
+Concern filled his eyes.
+
+The same eyes she'd known since childhood.
+
+The same eyes she'd tried to forget for an entire year.
+
+"I'm fine," she said.
+
+Vaelen raised an eyebrow.
+
+"That was a lie."
+
+"Maybe."
+
+For a moment, neither looked away.
+
+Then a memory surfaced.
+
+---
+
+### One Year Earlier
+
+The palace gardens glowed beneath hundreds of floating lanterns.
+
+Keila sat beside a fountain while Vaelen skipped stones across the water.
+
+Neither of them wore royal clothing.
+
+Neither wanted to.
+
+For a few precious hours, they were simply Keila and Vaelen.
+
+Not a princess.
+
+Not a prince.
+
+Not future rulers.
+
+Just two friends.
+
+Or perhaps something more.
+
+"You'll leave one day," Vaelen had said quietly.
+
+Keila blinked.
+
+"What?"
+
+"You'll fly away."
+
+He smiled sadly.
+
+"You're always staring beyond the mountains."
+
+Keila looked down.
+
+Because he was right.
+
+She had always dreamed of seeing the world.
+
+"What if I do?"
+
+Vaelen tossed another stone.
+
+"Then I'll come with you."
+
+Keila laughed.
+
+"You'd abandon the kingdom?"
+
+"For a few weeks."
+
+"Such sacrifice."
+
+"You're welcome."
+
+They both laughed.
+
+Then the laughter faded.
+
+The silence that followed felt different.
+
+Important.
+
+Vaelen looked at her.
+
+Really looked at her.
+
+And for one brief moment, Keila thought he might say something.
+
+Something neither of them had ever spoken aloud.
+
+Then palace bells rang in the distance.
+
+The moment ended.
+
+And neither mentioned it again.
+
+---
+
+The memory faded.
+
+Back on the bridge, Keila looked away first.
+
+Because remembering hurt.
+
+A lot had changed in a year.
+
+She had been exiled.
+
+He had stayed.
+
+And kingdoms didn't care much about romance.
+
+Princesses and princes were expected to marry for alliances, power, and politics.
+
+Not because they loved someone.
+
+Solaryn suddenly lifted his head.
+
+"We have visitors."
+
+Everyone turned.
+
+A group of riders approached from the western road.
+
+Refugees.
+
+Families.
+
+Children.
+
+Farmers.
+
+Their faces were pale with fear.
+
+One elderly man stumbled forward.
+
+"The shadows," he gasped.
+
+"They took everything."
+
+Lyra immediately rushed to help him.
+
+"What happened?"
+
+The man's hands trembled.
+
+"The village is gone."
+
+Keila's stomach sank.
+
+Another village.
+
+Another attack.
+
+The Gate was opening faster than anyone feared.
+
+Then a small girl stepped forward.
+
+She couldn't have been older than ten.
+
+She looked directly at Keila.
+
+"You're the dragon princess."
+
+Keila blinked.
+
+"I suppose I am."
+
+The girl smiled.
+
+"My father said you'd come back."
+
+Keila frowned.
+
+"Your father knows me?"
+
+The girl shook her head.
+
+"He said heroes always come back."
+
+For the first time all day, Keila didn't know what to say.
+
+Because she wasn't a hero.
+
+She was an exiled princess carrying secrets she barely understood.
+
+Yet somehow, these people were looking at her with hope.
+
+As if she could save them.
+
+The weight of that realization settled heavily on her shoulders.
+
+Then another voice spoke.
+
+A familiar voice.
+
+"Keila."
+
+Everyone turned.
+
+Morvane.
+
+She stood atop a nearby cliff.
+
+The wind whipped through her white hair.
+
+But something was different.
+
+She wasn't smiling.
+
+She wasn't threatening anyone.
+
+She looked... tired.
+
+"You have no idea what's coming," she said.
+
+Vaelen stepped forward immediately.
+
+"What do you want?"
+
+For a moment, Morvane's gaze lingered on him.
+
+And Keila finally understood.
+
+Not obsession.
+
+Not entirely.
+
+There was heartbreak there.
+
+Old heartbreak.
+
+The kind that never healed.
+
+"I wanted to save this world," Morvane said softly.
+
+"No," Vaelen replied. "You wanted to control it."
+
+Pain flashed across her face.
+
+Then it disappeared.
+
+Her mask returned.
+
+Cold.
+
+Sharp.
+
+Dangerous.
+
+"Find the Isle of Stars if you wish."
+
+She pointed toward the sea.
+
+"But when the truth is revealed, don't say I didn't warn you."
+
+The shadows gathered around her once more.
+
+And she vanished.
+
+Leaving only silence behind.
+
+Far across the ocean, beneath the light of unfamiliar stars, a silver-haired girl stood at the top of an ancient tower and opened a book that had remained sealed for a thousand years. 🐉✨📖
+
+</p>
+<a class="next-btn" href="#chapter8">Next Chapter →</a>
+</section>
+
+<section class="chapter" id="chapter8">
+<h2>Chapter Eight — The Journey Begins</h2>
+<div style="margin:15px 0;padding:14px;border-radius:14px;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.2);color:#ddd;">
+✨ Continue adding your full chapters here as the story grows. Readers can scroll through the complete novel like a real fantasy web series.
+</div>
+<p>
+
+The wind howled across the broken bridge long after Morvane disappeared.
+
+No one spoke.
+
+The refugees huddled together beneath blankets while dragons shifted uneasily beneath the darkening sky.
+
+Far away, black smoke continued to rise from the capital.
+
+The kingdom was falling apart.
+
+And every hour made it worse.
+
+Finally, Solaryn broke the silence.
+
+"We leave at dawn."
+
+Captain Lyra nodded.
+
+"The Royal Dragon Guard can escort you to the coast."
+
+Vaelen frowned.
+
+"You'll come with us?"
+
+"I was ordered to bring you back."
+
+Lyra glanced toward the distant capital.
+
+"I think the world ending takes priority."
+
+For the first time, Vaelen grinned.
+
+"Good decision."
+
+Keila couldn't help smiling too.
+
+The feeling vanished quickly.
+
+Because dawn was only a few hours away.
+
+And beyond the sea waited answers that might change everything.
+
+---
+
+That night, campfires burned along the riverbank below the bridge.
+
+Refugees rested.
+
+Soldiers stood watch.
+
+Dragons slept with one eye open.
+
+Keila sat alone beside the water.
+
+The river reflected the stars above.
+
+Normally, she loved nights like this.
+
+Tonight, her thoughts wouldn't settle.
+
+A familiar weight landed beside her.
+
+Circe.
+
+"You've been quiet."
+
+Keila tossed a pebble into the river.
+
+"I'm thinking."
+
+"Dangerous activity."
+
+Keila rolled her eyes.
+
+The dragon was silent for a moment.
+
+"You're thinking about him."
+
+Unfortunately, Circe was correct.
+
+"Maybe."
+
+"Definitely."
+
+Keila groaned.
+
+Circe's silver eyes gleamed mischievously.
+
+"You know, most dragons don't spend this much time discussing human romance."
+
+"We are not discussing human romance."
+
+"You literally just brought it up."
+
+"I literally did not."
+
+"You thought about it."
+
+"That doesn't count."
+
+Circe seemed extremely pleased with herself.
+
+Then footsteps approached.
+
+Keila didn't need to look up.
+
+She already knew who it was.
+
+Vaelen.
+
+"Mind if I sit?"
+
+Circe immediately stood.
+
+"Nope."
+
+And walked away.
+
+Traitor.
+
+Vaelen sat beside Keila.
+
+For a few moments, neither spoke.
+
+The river flowed quietly between them.
+
+Finally, Vaelen broke the silence.
+
+"Remember the gardens?"
+
+Keila looked at him.
+
+"The lantern festival?"
+
+He nodded.
+
+"I remember."
+
+The memory made her smile despite herself.
+
+They sat quietly for another moment.
+
+Then Vaelen sighed.
+
+"I should have come after you."
+
+Keila froze.
+
+The words hit harder than she expected.
+
+"What?"
+
+"When you were exiled."
+
+His gaze remained fixed on the water.
+
+"I should have left with you."
+
+Keila stared at him.
+
+For an entire year she had wondered.
+
+Wondered if he cared.
+
+Wondered if she mattered.
+
+Wondered why he stayed.
+
+Vaelen finally looked at her.
+
+"I wanted to."
+
+The honesty in his voice hurt.
+
+Because she believed him.
+
+"Then why didn't you?"
+
+The prince was silent.
+
+For a long moment.
+
+Then—
+
+"Because I was afraid."
+
+Keila blinked.
+
+Afraid?
+
+"I thought I could fix things."
+
+His jaw tightened.
+
+"I thought if I stayed, I could convince your parents to change their minds."
+
+The sadness in his eyes answered the rest.
+
+It hadn't worked.
+
+Not even a little.
+
+A strange feeling settled between them.
+
+Not anger.
+
+Not regret.
+
+Something softer.
+
+Something unfinished.
+
+"You were an idiot," Keila said.
+
+Vaelen laughed.
+
+"Probably."
+
+"No. Definitely."
+
+His smile widened.
+
+For the first time in a very long while, things felt almost normal.
+
+Almost.
+
+Then a scream shattered the night.
+
+Everyone jumped to their feet.
+
+Soldiers grabbed weapons.
+
+Dragons roared.
+
+Another scream echoed from the trees.
+
+"Refugee camp!" Lyra shouted.
+
+Dark shapes burst from the forest.
+
+Veilborn.
+
+Dozens of them.
+
+Maybe hundreds.
+
+The shadows surged toward the camp like a black wave.
+
+Children screamed.
+
+People ran.
+
+The attack had begun.
+
+"Protect the civilians!" Lyra ordered.
+
+Keila sprinted toward the battle.
+
+Circe soared overhead.
+
+Blue fire erupted from Aetherion's jaws as Vaelen charged beside her.
+
+The Veilborn slammed into the camp.
+
+Chaos exploded everywhere.
+
+Keila fired arrows as fast as she could.
+
+Silver flames tore through the shadows.
+
+But for every creature destroyed, two more appeared.
+
+"We're being overwhelmed!" a soldier yelled.
+
+Then the ground shook.
+
+Once.
+
+Twice.
+
+Three times.
+
+Everything stopped.
+
+Even the Veilborn froze.
+
+A golden light appeared above the camp.
+
+Warm.
+
+Bright.
+
+Ancient.
+
+The darkness recoiled immediately.
+
+A single feather drifted down from the light.
+
+Not black.
+
+Gold.
+
+The feather landed softly in Keila's hand.
+
+The moment her fingers touched it, a vision flashed through her mind.
+
+An island.
+
+Silver forests.
+
+A tower beneath the stars.
+
+And a silver-haired girl standing on a balcony.
+
+The girl's golden eyes widened.
+
+As though she could see Keila too.
+
+Then the vision vanished.
+
+The feather dissolved into light.
+
+The Veilborn screamed.
+
+And fled into the darkness.
+
+Leaving the camp in stunned silence.
+
+Keila's heart pounded.
+
+Because she knew one thing with absolute certainty now.
+
+The Heir of the First Flame wasn't waiting for them anymore.
+
+She was waiting for Keila. 🐉✨📖
+
+</p>
+</section>
+
+</div>
+
+<div class="music-player">
+  <audio id="fantasyMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8a52b5b1f.mp3?filename=fantasy-game-background-loop-110624.mp3" type="audio/mp3">
+  </audio>
+  <p>🎵 Fantasy Music</p>
+</div>
+
+<footer>
+  <h3>Author: Nathan</h3>
+  <p>Email: <a href="mailto:nunu.robinson21@gmail.com">nunu.robinson21@gmail.com</a></p>
+  <br>
+  <p>© 2026 Wind Hunter: Shadows of Hiyanthiea</p>
+</footer>
+
+<script>
+function enableNotifications() {
+  if (Notification.permission === 'granted') {
+    new Notification('🔔 Notifications Enabled!', {
+      body: 'You will be notified when new Wind Hunter chapters are released.'
+    });
+  } else if (Notification.permission !== 'denied') {
+    Notification.requestPermission().then(permission => {
+      if(permission === 'granted') {
+        new Notification('🔔 Notifications Enabled!', {
+          body: 'You will now receive chapter updates.'
+        });
+      }
+    });
+  }
+
+  document.getElementById('notifyText').innerText =
+    '🔔 Notifications successfully enabled for future chapters.';
+}
+
+const music = document.getElementById('fantasyMusic');
+let playing = false;
+
+function toggleMusic() {
+  if(!playing){
+    music.play();
+    playing = true;
+  } else {
+    music.pause();
+    playing = false;
+  }
+}
+</script>
+
+</body>
+</html>
+
