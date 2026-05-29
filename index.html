@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wind Hunter: Shadows of Hiyanthiea</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  ```html id="5f1g2a"
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+```
+
 
   <style>
     * {
@@ -234,14 +237,32 @@ display: none;
 .navbar.hidden-links .menu-toggle {
 display: inline-block;
       }
+    ```css id="nyg9c1"
+.menu-toggle {
+  background: rgba(139,92,246,0.15);
+  color: #c4b5fd;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.hide-links a {
+  display: none;
+}
+```
+
   </style>
 </head>
 <body>
 
-<div class="stars"></div>
-
+```html id="v85n4w"
 <div class="navbar">
-  <button class="menu-toggle" onclick="toggleChapters()"> ☰ Chapters </button>
+
+  <button class="menu-toggle" onclick="toggleChapters()">
+    ☰ Chapters
+  </button>
+
   <a href="#chapter1">Chapter 1</a>
   <a href="#chapter2">Chapter 2</a>
   <a href="#chapter3">Chapter 3</a>
@@ -251,13 +272,13 @@ display: inline-block;
   <a href="#chapter7">Chapter 7</a>
   <a href="#chapter8">Chapter 8</a>
   <a href="#chapter9">Chapter 9</a>
+
 </div>
+'''
 
 <header style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat; border-bottom: 1px solid rgba(255,255,255,0.08);">
 
-<div style="max-width:1100px;margin:auto;padding:20px;">
-  <img src="https://images.unsplash.com/photo-1577495508326-19a1b3cf65b7?q=80&w=1200&auto=format&fit=crop" alt="Wind Hunter Cover" style="width:100%;max-height:500px;object-fit:cover;border-radius:28px;box-shadow:0 0 40px rgba(139,92,246,0.35);margin-bottom:35px;border:1px solid rgba(255,255,255,0.08);">
-</div>
+<div style="max-width:1100px;margin:auto;padding:20px;"> <img src="https://files.catbox.moe/r8shri.png" alt="Wind Hunter Cover" style="width:100%;max-height:500px;object-fit:cover;border-radius:28px;box-shadow:0 0 40px rgba(139,92,246,0.35);margin-bottom:35px;border:1px solid rgba(255,255,255,0.08);"> </div>
 
 <header>
   <h1>Wind Hunter<br>Shadows of Hiyanthiea</h1>
@@ -2506,7 +2527,17 @@ The rider tilted his head.
   <p>© 2026 Wind Hunter: Shadows of Hiyanthiea</p>
 </footer>
 
-<script> function enableNotifications() { if (Notification.permission === 'granted') { alert("Notifications already enabled!"); } else if (Notification.permission !== 'denied') { Notification.requestPermission().then(permission => { if(permission === 'granted') { new Notification('🔔 Wind Hunter Notifications Enabled!', { body: 'You will now receive updates for new chapters.' }); } }); } } function notifyNewChapter(chapterNumber) { if(Notification.permission === 'granted') { new Notification(`📖 Chapter ${chapterNumber} Released!`, { body: `A new Wind Hunter chapter is now live!` }); } } const music = document.getElementById('fantasyMusic'); let playing = false; function toggleMusic() { if(!playing){ music.play(); playing = true; } else { music.pause(); playing = false; } } /* CHANGE THIS NUMBER WHEN YOU RELEASE A NEW CHAPTER */ notifyNewChapter(9); </script>
+<script> function enableNotifications() { if (Notification.permission === 'granted') { alert("Notifications already enabled!"); } else if (Notification.permission !== 'denied') { Notification.requestPermission().then(permission => { if(permission === 'granted') { new Notification('🔔 Wind Hunter Notifications Enabled!', { body: 'You will now receive updates for new chapters.' }); } }); } } function notifyNewChapter(chapterNumber) { if(Notification.permission === 'granted') { new Notification(`📖 Chapter ${chapterNumber} Released!`, { body: `A new Wind Hunter chapter is now live!` }); } } const music = document.getElementById('fantasyMusic'); let playing = false; function toggleMusic() { if(!playing){ music.play(); playing = true; } else { music.pause(); playing = false; } } /* CHANGE THIS NUMBER WHEN YOU RELEASE A NEW CHAPTER */ notifyNewChapter(9);
+  ```javascript id="6iy5x0"
+function toggleChapters() {
+
+  const navbar = document.querySelector('.navbar');
+
+  navbar.classList.toggle('hide-links');
+
+}
+```
+ </script>
 
 </body>
 </html>
