@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wind Hunter: Shadows of Hiyanthiea</title>
+  <link rel="icon" type="image/png" href="https://files.catbox.moe/r8shri.png">
+  <link rel="apple-touch-icon" href="https://files.catbox.moe/r8shri.png">
 
   
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-```
 
 
   <style>
@@ -237,7 +238,6 @@ display: none;
 .navbar.hidden-links .menu-toggle {
 display: inline-block;
       }
-    ```css id="nyg9c1"
 .menu-toggle {
   background: rgba(139,92,246,0.15);
   color: #c4b5fd;
@@ -250,13 +250,11 @@ display: inline-block;
 .hide-links a {
   display: none;
 }
-```
 
   </style>
 </head>
 <body>
 
-```html id="v85n4w"
 <div class="navbar">
 
   <button class="menu-toggle" onclick="toggleChapters()">
@@ -2226,7 +2224,6 @@ She was waiting for Keila. 🐉✨📖
 
 </p>
 </section>
-```html
 <section class="chapter" id="chapter9">
 
 <h2>Chapter Nine — The Girl in the Tower</h2>
@@ -2796,13 +2793,11 @@ And somewhere deep within the Isle of Stars, beneath the ancient tower where no 
 <a class="next-btn" href="#chapter11">Next Chapter →</a>
 
 </section>
-```
 
 
 <a class="next-btn" href="#comments">Reader Comments →</a>
 
 </section>
-```
 
 </div>
 <div class="music-player"> <audio id="fantasyMusic" loop> <source src="https://files.catbox.moe/ioavpm.mp3" type="audio/mp3"> </audio> <button class="btn" onclick="toggleMusic()"> 🎵 Play Fantasy Music </button> </div>
@@ -2816,7 +2811,6 @@ And somewhere deep within the Isle of Stars, beneath the ancient tower where no 
 </footer>
 
 <script> function enableNotifications() { if (Notification.permission === 'granted') { alert("Notifications already enabled!"); } else if (Notification.permission !== 'denied') { Notification.requestPermission().then(permission => { if(permission === 'granted') { new Notification('🔔 Wind Hunter Notifications Enabled!', { body: 'You will now receive updates for new chapters.' }); } }); } } function notifyNewChapter(chapterNumber) { if(Notification.permission === 'granted') { new Notification(`📖 Chapter ${chapterNumber} Released!`, { body: `A new Wind Hunter chapter is now live!` }); } } const music = document.getElementById('fantasyMusic'); let playing = false; function toggleMusic() { if(!playing){ music.play(); playing = true; } else { music.pause(); playing = false; } } /* CHANGE THIS NUMBER WHEN YOU RELEASE A NEW CHAPTER */ notifyNewChapter(9);
-  ```javascript id="6iy5x0"
 function toggleChapters() {
 
   const navbar = document.querySelector('.navbar');
@@ -2824,9 +2818,7 @@ function toggleChapters() {
   navbar.classList.toggle('hide-links');
 
 }
-```
  </script>
 
 </body>
 </html>
-
